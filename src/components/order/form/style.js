@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import {Field as FieldBase} from 'components/forms'
+import {Field as FieldBase} from 'components/field'
 import {Button as ButtonBase} from 'components/Button'
 
 export const Container = styled.div`

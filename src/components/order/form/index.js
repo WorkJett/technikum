@@ -9,7 +9,7 @@ import {
 import {Navigation} from 'components/navigation'
 import {ACCENT, PRIMARY} from 'components/Button'
 import {Modal} from 'components/modal'
-import {DISABLE, EDIT} from 'components/forms'
+import {DISABLE, EDIT} from 'components/field'
 
 export const Form = ({back}) => {
   const [open, setOpen] = useState(false)

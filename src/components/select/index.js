@@ -10,21 +10,19 @@ import {
   Item
 } from './style'
 
-export const Select = ({title, items, onSelect, className}) => {
+export const Select = ({title, value, items, onSelect, className}) => {
   const [open, setOpen] = useState(false)
-  const [current, setCurrent] = useState()
 
   const on_main = () => setOpen(!open)
   const on_select = item => () => {
-    setCurrent(item)
     setOpen(false)
     if (onSelect) onSelect(item)
   }
-  const current_title = current ? current.title : title 
+  const current_title = value ? value.title : title 
 
   return (
     <Container className={className}>
-      <MainBtn open={open} selected={!!current} onClick={on_main}>
+      <MainBtn open={open} selected={!!value} onClick={on_main}>
         <Title>{current_title}</Title>
         {open && <Up />}
         {!open && <Down />}

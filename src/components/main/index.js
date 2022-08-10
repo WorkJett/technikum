@@ -8,7 +8,6 @@ import {
 } from './style'
 
 export const Main = ({toConsumption, toOrder}) => {
-
   return (
     <Container>
       <Logo />

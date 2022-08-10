@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import {Stepper as StepperBase} from 'components/stepper'
 import {Navigation as NavigationBase} from 'components/navigation'
-import {Field as FieldBase, EDIT} from 'components/forms'
+import {Field as FieldBase, MoneyField, EDIT} from 'components/field'
 import {Button} from 'components/Button'
 import {Select as SelectBase} from 'components/select'
 
@@ -22,7 +22,11 @@ export const Navigation = styled(NavigationBase)`
   margin-top: 46px;
 `
 
-const field_mode = ({mode}) => {
+export const Field = styled(FieldBase)`
+  margin-top: 24px;
+`
+
+const money_field_mode = ({mode}) => {
   if (mode === EDIT) return `
     margin-top: 220px;
   `
@@ -31,8 +35,8 @@ const field_mode = ({mode}) => {
   `
 }
 
-export const Field = styled(FieldBase)`
-  ${field_mode}
+export const Amount = styled(MoneyField)`
+  ${money_field_mode}
 `
 
 export const NextButton = styled(Button)`

@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/static/js/main.694e3d1f.js",
-    "static/media/edit.svg": "/static/media/edit.bc3c577d2f7a929479a3c65b7015d9f5.svg",
-    "index.html": "/index.html",
-    "static/media/up.svg": "/static/media/up.08b29acf08ba54f76ae1d803b4f86189.svg",
-    "static/media/down.svg": "/static/media/down.e2735b4ed30716f870c76fb698fa8920.svg",
-    "static/media/arrow_back.svg": "/static/media/arrow_back.07dbeabd2ae1fc4770f28429295bcee6.svg",
-    "main.694e3d1f.js.map": "/static/js/main.694e3d1f.js.map"
+    "main.js": "/technikum/static/js/main.23a08c9c.js",
+    "static/media/edit.svg": "/technikum/static/media/edit.bc3c577d2f7a929479a3c65b7015d9f5.svg",
+    "index.html": "/technikum/index.html",
+    "static/media/up.svg": "/technikum/static/media/up.08b29acf08ba54f76ae1d803b4f86189.svg",
+    "static/media/down.svg": "/technikum/static/media/down.e2735b4ed30716f870c76fb698fa8920.svg",
+    "static/media/arrow_back.svg": "/technikum/static/media/arrow_back.07dbeabd2ae1fc4770f28429295bcee6.svg",
+    "main.23a08c9c.js.map": "/technikum/static/js/main.23a08c9c.js.map"
   },
   "entrypoints": [
-    "static/js/main.694e3d1f.js"
+    "static/js/main.23a08c9c.js"
   ]
 }

@@ -1,3 +1,5 @@
+import {useEffect, useState} from 'react'
+
 import {
   Container,
   ItemBox,
@@ -5,19 +7,21 @@ import {
   ItemLabel,
   ItemText
 } from './style'
+import {REQUESTS_URL} from 'settings'
 
 import {Navigation} from 'components/navigation'
 
-const Item = ({data: {summ, type, comment}, onClick}) => {
+const Item = ({data: {sum, payment_type, comment}, onClick}) => {
+  const as_money = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
   return (
     <ItemBox onClick={onClick}>
       <ItemRow>
         <ItemLabel>Сумма</ItemLabel>
-        <ItemText>{summ}</ItemText>
+        <ItemText>{as_money}</ItemText>
       </ItemRow>
       <ItemRow>
         <ItemLabel>Форма оплаты</ItemLabel>
-        <ItemText>{type}</ItemText>
+        <ItemText>{payment_type}</ItemText>
       </ItemRow>
       <ItemRow>
         <ItemLabel>Комментарий</ItemLabel>
@@ -27,27 +31,24 @@ const Item = ({data: {summ, type, comment}, onClick}) => {
   )
 }
 
-const data = [
-  {id: 0, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'},
-  {id: 1, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'},
-  {id: 2, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'},
-  {id: 3, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'},
-  {id: 4, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'},
-  {id: 5, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'},
-  {id: 6, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'},
-  {id: 7, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'},
-  {id: 8, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'},
-  {id: 9, summ: '5 000 000 сум', type: 'P2P', comment: 'текстовое поле в 3 строки для комментариев'}
-]
-
 export const List = ({back, select}) => {
-  const on_item_click = id => () => select(id)
+  const [items, setItems] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      const requests = await fetch(REQUESTS_URL)
+        .then(res => res.json()).then(res => res.data)
+      setItems(requests)
+    })()
+  }, [])
+
+  const on_item_click = item => () => select(item)
 
   return (
     <Container>
       <Navigation back={back} title={'Выбор заявки'} />
-      {data.map(datum => (
-        <Item key={`order_item_${datum.id}`} data={datum} onClick={on_item_click(datum.id)} />
+      {items.map(item => (
+        <Item key={`order_item_${item.id}`} data={item} onClick={on_item_click(item)} />
       ))}
     </Container>
   )
