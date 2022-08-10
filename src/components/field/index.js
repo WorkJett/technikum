@@ -52,7 +52,7 @@ export const MoneyField = ({mode, label, value, onEdit, className, onChange}) =>
   const dis = mode === DISABLE
   const edit = mode === EDIT
 
-  const as_money = value.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+  const as_money = value ? value.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ') : ''
 
   if (!mode || dis) return (
     <FieldBox className={className} dis={dis}>
