@@ -51,6 +51,11 @@ export const Step6 = ({to_step, data, onDataChange, onSave, paymentRequestId}) =
     to_step(4)
   }
 
+  const get_project_str = () => {
+    if (mainProject) return mainProject.title
+    return courseProject.title
+  }
+
   const save = () => {
     fetch(SAVE_URL, {
       method: 'POST',
@@ -61,9 +66,9 @@ export const Step6 = ({to_step, data, onDataChange, onSave, paymentRequestId}) =
         accountId: paymentItem.accountId,
         accountTitle: paymentItem.title,
         companyId: paymentItem.companyId,
-        mainProjectTitle: mainProject.title,
-        projectId: courseProject.projectId,
-        projectTitle: courseProject.title,
+        mainProjectTitle: mainProject ? mainProject.title : null,
+        projectId: courseProject ? courseProject.projectId : mainProject.projectId,
+        projectTitle: courseProject ? courseProject.title : mainProject.title,
         operationCategoryId: category.operationCategoryId,
         comment,
         sum: parseInt(amount.toString().replaceAll(' ', '')),
@@ -77,7 +82,7 @@ export const Step6 = ({to_step, data, onDataChange, onSave, paymentRequestId}) =
     <>
       <Amount label={'Сумма'} value={amount} onEdit={edit_amount} />
       <Field label={'Форма оплаты'} value={paymentItem.title} onEdit={edit_payment} />
-      <Field label={'Проект'} value={`${mainProject.title}, ${courseProject.title}`} onEdit={edit_project} />
+      <Field label={'Проект'} value={get_project_str()} onEdit={edit_project} />
       <Field label={'Cтатья расходов'} value={category.title} onEdit={edit_category} />
       <Field label={'Комментарий'} value={comment} onEdit={edit_comment} />
       <NextButton onClick={save} type={ACCENT}>Сохранить</NextButton>

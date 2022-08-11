@@ -33,7 +33,7 @@ export const Step3 = ({to_step, data, onDataChange}) => {
     to_step(1)
   }
 
-  const is_next = !!mainProject && !!courseProject
+  const is_next = !!mainProject || !!courseProject
 
   const set_main_project = project => () => {
     onDataChange({
@@ -74,11 +74,11 @@ export const Step3 = ({to_step, data, onDataChange}) => {
       <Field label={'Форма оплаты'} value={paymentItem.title} onEdit={edit_payment} />
       <Divider />
       <Title>Проект</Title>
-      {!mainProject && get_main_projects().map(project => (
+      {!mainProject && !courseProject && get_main_projects().map(project => (
         <PayButton key={`main_project_${project.title}`} onClick={set_main_project(project)}>{project.title}</PayButton>
       ))}
       {mainProject && <PayButton type={SELECTED} onClick={clear_main_project}>{mainProject.title}</PayButton>}
-      <Select title={'Выберите пункт'} value={courseProject} items={get_course_projects()} onSelect={set_course_project} />
+      {!mainProject && <Select title={'Выберите пункт'} value={courseProject} items={get_course_projects()} onSelect={set_course_project} />}
       {is_next && <NextButton onClick={() => to_step(3)} type={PRIMARY}>Продолжить</NextButton>}
     </>
   )

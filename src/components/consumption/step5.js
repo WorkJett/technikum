@@ -52,11 +52,16 @@ export const Step5 = ({to_step, data, onDataChange}) => {
     })
   }
 
+  const get_project_str = () => {
+    if (mainProject) return mainProject.title
+    return courseProject.title
+  }
+
   return (
     <>
       <Amount label={'Сумма'} value={amount} onEdit={edit_amount} />
       <Field label={'Форма оплаты'} value={paymentItem.title} onEdit={edit_payment} />
-      <Field label={'Проект'} value={`${mainProject.title}, ${courseProject.title}`} onEdit={edit_project} />
+      <Field label={'Проект'} value={get_project_str()} onEdit={edit_project} />
       <Field label={'Cтатья расходов'} value={category.title} onEdit={edit_category} />
       <Divider />
       <Title>Комментарий</Title>
