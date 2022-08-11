@@ -59,7 +59,7 @@ export const Step6 = ({to_step, data, onDataChange, onSave, paymentRequestId}) =
       },
       body: JSON.stringify({
         accountId: paymentItem.accountId,
-        accountTitle: paymentItem.accountTitle,
+        accountTitle: paymentItem.title,
         companyId: paymentItem.companyId,
         mainProjectTitle: mainProject.title,
         projectId: courseProject.projectId,
